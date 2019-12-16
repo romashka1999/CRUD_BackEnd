@@ -31,12 +31,8 @@ export default class AuthService {
     public async verifyToken(token: string) {
         try {
             const SECRET =  process.env.SECRET_KEY as string;
-            try {
-                const verifiedUserId: any = await jwt.verify(token , SECRET);
-                return verifiedUserId;
-            } catch(err) {
-                throw(err);
-            }
+            const verifiedUserId: any = await jwt.verify(token , SECRET);
+            return verifiedUserId;
         } catch(error) {
             throw({type: "AUTH_SERVICE_ERROR", statusCode: 400, message: error});
         }
@@ -44,7 +40,6 @@ export default class AuthService {
 
     public async refreshToken(token: string, oldRefreshToken: string) {
         try {
-            try {
                 const verifiedUserId: any = await this.verifyToken(token);
                 for( let ref of this.refreshTokens ) {
                     if( ref === oldRefreshToken ) {
@@ -57,12 +52,13 @@ export default class AuthService {
                         }
                     }
                 }  
-                throw({type: "AUTH_SERVICE_ERROR", statusCode: 400, message: 'refreshToken is not valid'});
-            } catch (error) {
-                throw(error);
-            }
+                throw('refreshToken is not valid');
         } catch (error) {
-            throw({type: "AUTH_SERVICE_ERROR", statusCode: 400, message: error});
+            if(error.type) {
+                throw(error);
+            } else {
+                throw({type: "AUTH_SERVICE_ERROR", statusCode: 400, message: error});
+            }
         }
     }
 }

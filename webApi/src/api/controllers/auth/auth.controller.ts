@@ -16,7 +16,6 @@ export default class AuthController {
     public async verifyToken(body: any) {
         const authObj = {
             token: body.token,
-            refreshToken: body.refreshToken
         };
         const response: any = await this.authService.verifyToken(authObj);
         return response;
@@ -24,7 +23,8 @@ export default class AuthController {
     
     public async refreshToken(body: any) {
         const authObj = {
-            token: body.token
+            token: body.token,
+            refreshToken: body.refreshToken
         };
         const response: any = await this.authService.refreshToken(authObj);
         return response;
