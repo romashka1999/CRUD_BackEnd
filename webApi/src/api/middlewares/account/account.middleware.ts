@@ -32,10 +32,10 @@ export default class AccountMiddleware {
         }
     };
 
-    public async loginUser (id: any, req: Request, res: Response, next: NextFunction) {
+    public async loginUser (req: Request, res: Response, next: NextFunction) {
         try {
             const response: any = await accountController.loginUser(req.body);
-            const id = response.id;
+            const id: any= response.id;
             next(id);
         } catch (error) {
             next(error);
