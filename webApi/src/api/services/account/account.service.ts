@@ -4,7 +4,7 @@ export default class AccountService {
 
     public async loginUser(body: any) {
         try {
-            const response = await axios.post(process.env.ACCOUNT_MICROSERVICE_HOST + `/account/user/loginUser`, body);
+            const response: any = await axios.post(process.env.ACCOUNT_MICROSERVICE_HOST + `/account/user/loginUser`, body);
             return response.data;
         } catch (error) {
             const err = error.response.data;
@@ -14,7 +14,7 @@ export default class AccountService {
 
     public async createUser(body: any) {
         try {
-            const response = await axios.post(process.env.ACCOUNT_MICROSERVICE_HOST + `/account/user/createUser`, body);
+            const response: any = await axios.post(process.env.ACCOUNT_MICROSERVICE_HOST + `/account/user/createUser`, body);
             return response.data;
         } catch (error) {
             const err = error.response.data;
@@ -24,7 +24,7 @@ export default class AccountService {
 
     public async getUser(id: any) {
         try {
-            const response = await axios.get(process.env.ACCOUNT_MICROSERVICE_HOST + `/account/user/getUserById/${id}`);
+            const response: any = await axios.get(process.env.ACCOUNT_MICROSERVICE_HOST + `/account/user/getUserById/${id}`);
             return response.data;
         } catch (error) {
             const err = error.response.data;

@@ -15,13 +15,13 @@ export default class AccountRouter {
     }
 
     private addRoutes() {
+        this.router.post('/loginAdmin', this.accountMiddleware.loginAdmin, this.authMiddleware.generateToken);
+        
         this.router.get('/getAllAdmins', this.authMiddleware.verifyToken, this.accountMiddleware.getAllAdmins);
 
         this.router.get('/getAdminById/:id', this.authMiddleware.verifyToken, this.accountMiddleware.getAdminById);
 
         this.router.post('/createAdmin', this.authMiddleware.verifyToken, this.accountMiddleware.createAdmin);
-
-        this.router.post('/loginAdmin', this.accountMiddleware.loginAdmin, this.authMiddleware.generateToken);
 
         this.router.delete('/deleteAdminById/:id', this.authMiddleware.verifyToken, this.accountMiddleware.deleteAdminById);
 
