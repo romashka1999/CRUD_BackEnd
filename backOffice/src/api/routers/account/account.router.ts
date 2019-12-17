@@ -33,7 +33,7 @@ export default class AccountRouter {
 
         this.router.post('/createUser', this.authMiddleware.verifyToken, this.accountMiddleware.createUser);
 
-        this.router.delete('/deleteUserById/:id', this.authMiddleware.verifyToken, this.accountMiddleware.deleteUserById);
+        this.router.delete('/deleteUserById/:id', /*this.authMiddleware.verifyToken,*/ this.accountMiddleware.deleteUserById);
 
         this.router.put('/updateUserById/:id', this.authMiddleware.verifyToken, this.accountMiddleware.updateUserById);
     }
