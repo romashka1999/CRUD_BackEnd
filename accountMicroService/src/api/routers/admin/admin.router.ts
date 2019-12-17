@@ -24,5 +24,9 @@ export default class AdminRouter {
         this.router.delete('/deleteAdminById/:id', this.adminMiddleware.deleteAdminById);
 
         this.router.put('/updateAdminById/:id', this.adminMiddleware.updateAdminById);
+
+        this.router.post('/recoverPassword/set', this.adminMiddleware.recoverPasswordSet);
+
+        this.router.post('/recoverPassword/get', this.adminMiddleware.recoverPasswordGet)
     }
 }

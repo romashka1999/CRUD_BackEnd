@@ -1,4 +1,4 @@
-import { adminCreateLoginSchema, adminUpdateSchema, idSchema } from '../../validators';
+import { adminCreateLoginSchema, adminUpdateSchema, idSchema, adminRecoverPasswordGet, adminRecoverPasswordSet } from '../../validators';
 import { AdminService } from '../../services';
 
 
@@ -75,6 +75,28 @@ export default class AdminController {
             throw({type: "ADMIN_CONTROLLER_ERROR", statusCode: 400, message: err})
         } else {
             const response = await this.adminService.loginAdmin(validAdmin.value);
+            return response;
+        }
+    }
+
+    public async recoverPasswordSet(body: any) {
+        const validPassSet = adminRecoverPasswordSet.validate(body);
+        if(validPassSet.error) {
+            const err = validPassSet.error.details[0].message; 
+            throw({type: "ADMIN_CONTROLLER_ERROR", statusCode: 400, message: err})
+        } else {
+            const response = await this.adminService.recoverPasswordSet(body);
+            return response;
+        }
+    }
+
+    public async recoverPasswordGet(body: any) {
+        const validPassGet = adminRecoverPasswordGet.validate(body);
+        if(validPassGet.error) {
+            const err = validPassGet.error.details[0].message; 
+            throw({type: "ADMIN_CONTROLLER_ERROR", statusCode: 400, message: err})
+        } else {
+            const response = await this.adminService.recoverPasswordGet(body);
             return response;
         }
     }

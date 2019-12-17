@@ -58,4 +58,22 @@ export default class AdminMiddleware {
             next(error);
         }
     };
+
+    public async recoverPasswordSet (req: Request, res: Response, next: NextFunction) {
+        try {
+            const response = await adminController.recoverPasswordSet(req.body);
+            res.status(200).json(response);
+        } catch (error) {
+            next(error);
+        }
+    };
+
+    public async recoverPasswordGet (req: Request, res: Response, next: NextFunction) {
+        try {
+            const response = await adminController.recoverPasswordGet(req.body);
+            res.status(200).json(response);
+        } catch (error) {
+            next(error);
+        }
+    };
 }

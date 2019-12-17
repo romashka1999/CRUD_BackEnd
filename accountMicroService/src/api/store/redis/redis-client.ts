@@ -1,5 +1,5 @@
 import { ClientOpts } from 'redis';
-import * as bluebird from 'bluebird';
+import bluebird from 'bluebird';
 import { Store } from '../store';
 const redis = bluebird.promisifyAll(require('redis'));
 

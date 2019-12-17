@@ -14,16 +14,19 @@ export interface Store {
 }
 
 export class StoreFactory {
-    public static create(type: StoreType): Store {
+    public static createClient(type: StoreType): any {
         if (type === StoreType.Redis) {
-            return new RedisStoreClient(process.env.REDIS_HOST, Number.parseInt(process.env.REDIS_PORT));
+            return new RedisStoreClient(process.env.REDIS_HOST as string, Number.parseInt(process.env.REDIS_PORT as string));
+        } else {
+            return null;
         }
-        return null;
     }
 }
 
-const storeClient = StoreFactory.create(StoreType.Redis);
+const storeClient: Store = StoreFactory.createClient(StoreType.Redis);
+
 export { storeClient };
+
 
 
 
