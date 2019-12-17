@@ -98,7 +98,6 @@ export default class AccountService {
             const response: any = await axios.delete(process.env.ACCOUNT_MICROSERVICE_HOST + `/account/user/deleteUserById/${id}`);
             return response.data;
         } catch (error) {
-            console.log(error);
             const err = error.response.data;
             throw(err);
         }   
